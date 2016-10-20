@@ -78,10 +78,6 @@ public:
     /// Retrieve the shared memory identifier.
     std::string input_shm() const { return input_shm_; }
     
-    //----------added H.Hartmann 05.09.16----------
-    // Retrieve the in kv-store url
-    std::string kv_url() const { return kv_url_; }
-    
     /// Retrieve the standalone mode flag.
     bool standalone() const { return standalone_; }
 
@@ -148,11 +144,6 @@ private:
     // The input shared memory identifier
     std::string input_shm_;
 
-    //----------added H.Hartmann 05.09.16----------
-    // The input shared memory identifier set in kv-store
-    bool kv_shm_ = false;
-    std::string kv_url_;
-    
     /// The standalone mode flag.
     bool standalone_ = true;
 

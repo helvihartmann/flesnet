@@ -14,18 +14,9 @@
 #include <chrono>
 #include <iostream>
 #include <thread>
-//----------added H.Hartmann 01.09.16----------
-#include "etcdClient.h"
-#include <sstream>
 
 Application::Application(Parameters const& par) : par_(par)
 {
-    //----------added H.Hartmann 01.09.16----------
-    stringstream post;
-    string prefix = "/mstool0"; //get ID from command line
-    EtcdClient etcd(par_.kv_url);
-    
-    
     // Source setup
     if (!par_.input_shm.empty()) {
         //get it from etcd
@@ -97,13 +88,6 @@ Application::Application(Parameters const& par) : par_(par)
             output_shm_device_->channels().at(0);
         sinks_.push_back(std::unique_ptr<fles::MicrosliceSink>(
             new fles::MicrosliceTransmitter(*data_sink)));
-        
-        //----------added H.Hartmann 01.09.16----------
-        post << "value=" << par_.output_shm << endl;
-        etcd.setvalue(prefix, "/shmname", post.str());
-        post.str("");//deletepost
-        post << "value=yes";
-        etcd.setvalue(prefix, "/uptodate", post.str());
     }
 }
 

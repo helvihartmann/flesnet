@@ -29,13 +29,8 @@ void Parameters::parse_options(int argc, char* argv[])
     source_add("shm-channel,c", po::value<size_t>(&shm_channel),
                "use given shared memory channel as data source");
     
-    //----------added H.Hartmann 01.09.16----------
     source_add("input-shm,I", po::value<std::string>(&input_shm),
                "name of a shared memory to use as data source");
-    source_add("kv-url", po::value<std::string>(&kv_url),
-               "url of kv-store");
-    /*source_add("input-shm,I", po::value<uint32_t>(&use_input_shm),
-               "name of a shared memory to use as data source");*/
     
     source_add("input-archive,i", po::value<std::string>(&input_archive),
                "name of an input file archive to read");
